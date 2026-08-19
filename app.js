@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
+const uuidv4 = crypto.randomUUID.bind(crypto);
 const path = require('path');
 const { visitUrl } = require('./bot');
 
