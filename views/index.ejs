@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSRF CTF</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div><strong>CSRF CTF</strong></div>
+            <div>
+                <a href="/">Home</a>
+                <a href="/bot">Submit URL to Bot</a>
+                <% if (user) { %>
+                    <a href="/logout">Logout (<%= user.username %>)</a>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                <% } %>
+            </div>
+        </nav>
+
+        <% if (user) { %>
+            <div class="card">
+                <h2>Welcome, <%= user.username %></h2>
+                <p>Your current flag status:</p>
+                <div class="flags">
+                    <div class="flag <%= user.flags.level1 ? 'captured' : 'uncaptured' %>">
+                        Level 1: <%= user.flags.level1 ? 'CTF{basic_csrf_master}' : 'Not Captured' %>
+                    </div>
+                    <div class="flag <%= user.flags.level2 ? 'captured' : 'uncaptured' %>">
+                        Level 2: <%= user.flags.level2 ? 'CTF{no_referrer_bypass}' : 'Not Captured' %>
+                    </div>
+                    <div class="flag <%= user.flags.level3 ? 'captured' : 'uncaptured' %>">
+                        Level 3: <%= user.flags.level3 ? 'CTF{method_override_ftw}' : 'Not Captured' %>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Levels</h3>
+                <ul>
+                    <li><a href="/level1">Level 1: Basic CSRF</a></li>
+                    <li><a href="/level2">Level 2: Weak Referer Check</a></li>
+                    <li><a href="/level3">Level 3: Flawed CSRF Token</a></li>
+                </ul>
+            </div>
+        <% } else { %>
+            <div class="card">
+                <h2>Welcome to the CSRF CTF</h2>
+                <p>Please <a href="/login">login</a> to continue.</p>
+                <p>Use <code>student</code> / <code>student</code> to view your progress.</p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

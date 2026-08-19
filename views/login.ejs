@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CSRF CTF</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div><strong>CSRF CTF</strong></div>
+            <div>
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+            </div>
+        </nav>
+
+        <div class="card" style="max-width: 400px; margin: 0 auto;">
+            <h2>Login</h2>
+            <% if (error) { %>
+                <div class="alert error"><%= error %></div>
+            <% } %>
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                Use <strong>student</strong> / <strong>student</strong> to check your progress.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

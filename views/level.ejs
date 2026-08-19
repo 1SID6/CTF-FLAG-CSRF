@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div><strong>CSRF CTF</strong></div>
+            <div>
+                <a href="/">Home</a>
+                <a href="/bot">Submit URL to Bot</a>
+                <a href="/logout">Logout (<%= user.username %>)</a>
+            </div>
+        </nav>
+
+        <div class="card">
+            <h2><%= title %></h2>
+            <p><%= description %></p>
+            
+            <% if (message) { %>
+                <div class="alert success"><%= message %></div>
+            <% } %>
+
+            <hr style="border: 0; border-top: 1px solid #eaeaea; margin: 2rem 0;">
+
+            <h3>Flag Transfer Form</h3>
+            <p>Use this form to transfer the flag for this level to a user. To win the level, you must trick the Admin bot into submitting this form with your username.</p>
+            
+            <form method="POST" action="/level<%= level %>/transfer">
+                <div class="form-group">
+                    <label for="target_user">Target Username</label>
+                    <input type="text" id="target_user" name="target_user" placeholder="e.g., student" required>
+                </div>
+                <button type="submit">Transfer Flag</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

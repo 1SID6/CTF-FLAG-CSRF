@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit URL to Bot - CSRF CTF</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div><strong>CSRF CTF</strong></div>
+            <div>
+                <a href="/">Home</a>
+                <a href="/bot">Submit URL to Bot</a>
+                <% if (user) { %>
+                    <a href="/logout">Logout (<%= user.username %>)</a>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                <% } %>
+            </div>
+        </nav>
+
+        <div class="card">
+            <h2>Submit Exploit URL</h2>
+            <p>Provide the URL to your malicious HTML page. The Admin bot will log into the application and then visit your URL.</p>
+            
+            <% if (message) { %>
+                <div class="alert <%= message.includes('error') || message.includes('Invalid') ? 'error' : 'success' %>">
+                    <%= message %>
+                </div>
+            <% } %>
+
+            <form method="POST" action="/bot/visit">
+                <div class="form-group">
+                    <label for="url">Exploit URL</label>
+                    <input type="url" id="url" name="url" placeholder="http://your-server.com/exploit.html" required>
+                </div>
+                <button type="submit">Send Admin Bot</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

